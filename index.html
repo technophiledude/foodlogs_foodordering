@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foodlogs - Order Your Favorite Food</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Splash Screen (shown briefly) -->
+    <div id="splashScreen" class="splash-screen">
+        <h1>Foodlogs</h1>
+        <p>Order your favourite food!</p>
+    </div>
+
+    <!-- Main App Container -->
+    <div id="appContainer" class="hidden">
+        <!-- Header -->
+        <header class="header">
+            <div class="container header-content">
+                <div class="logo">Foodlogs</div>
+                <div class="nav-icons">
+                    <i class="fas fa-home" id="homeIcon"></i>
+                    <i class="fas fa-user" id="profileIcon"></i>
+                    <i class="fas fa-shopping-cart" id="cartIcon">
+                        <span class="cart-count" id="cartCount">0</span>
+                    </i>
+                </div>
+            </div>
+        </header>
+
+        <!-- Home Screen -->
+        <div id="homeScreen" class="container">
+            <div class="hero">
+                <h1>Foodlogs</h1>
+                <p>Order your favourite food!</p>
+            </div>
+            
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search for burgers, combos, drinks...">
+            </div>
+            
+            <div class="category-tabs">
+                <div class="category-tab active">All</div>
+                <div class="category-tab">Combos</div>
+                <div class="category-tab">Sliders</div>
+                <div class="category-tab">Classifieds</div>
+            </div>
+            
+            <div class="food-grid" id="foodGrid">
+                <!-- Food items populated by JavaScript -->
+            </div>
+        </div>
+
+        <!-- Product Detail Screens -->
+        <div id="productDetailScreens" class="hidden">
+            <!-- Product 1: Cheeseburger -->
+            <div id="product1Screen" class="container product-detail hidden">
+                <div class="product-header">
+                    <div class="back-button" data-back="home">
+                        <i class="fas fa-arrow-left"></i> Back to Menu
+                    </div>
+                    
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Cheeseburger Wendy's Burger">
+                    </div>
+                    
+                    <h1 class="product-title">Cheeseburger Wendy's Burger</h1>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span>4.9 – 26 mins</span>
+                    </div>
+                    <p class="product-description">The Cheeseburger Wendy's Burger is a classic fast food burger that packs a punch of flavor in every bite. Made with a juicy beef patty cooked to perfection, it's topped with melted American cheese, crispy lettuce, ripe tomato, and crunchy pickles.</p>
+                </div>
+                
+                <div class="product-options">
+                    <div class="option-group">
+                        <div class="option-title">Spiciness</div>
+                        <div class="option-buttons">
+                            <div class="option-btn" data-option="spicy">Spicy</div>
+                            <div class="option-btn active" data-option="mild">Mild</div>
+                            <div class="option-btn" data-option="hot">Hot</div>
+                        </div>
+                    </div>
+                    
+                    <div class="option-group">
+                        <div class="option-title">Portion</div>
+                        <div class="portion-control">
+                            <div class="portion-btn" id="decreasePortion1">-</div>
+                            <div class="portion-value" id="portionValue1">2</div>
+                            <div class="portion-btn" id="increasePortion1">+</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product-footer">
+                    <div class="total-price" id="product1Price">$8.24</div>
+                    <button class="btn add-to-cart-btn" data-product-id="1" data-product-name="Cheeseburger Wendy's Burger" data-base-price="8.24">ADD TO CART</button>
+                </div>
+            </div>
+
+            <!-- Product 2: Veggie Burger -->
+            <div id="product2Screen" class="container product-detail hidden">
+                <div class="product-header">
+                    <div class="back-button" data-back="home">
+                        <i class="fas fa-arrow-left"></i> Back to Menu
+                    </div>
+                    
+                    <div class="product-image">
+                        <img src="images/veggie_burger.jpg" alt="Hamburger Veggie Burger">
+                    </div>
+                    
+                    <h1 class="product-title">Hamburger Veggie Burger</h1>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span>4.8 – 14 mins</span>
+                    </div>
+                    <p class="product-description">Enjoy our delicious Hamburger Veggie Burger, made with a savory blend of fresh vegetables and herbs, topped with crisp lettuce, juicy tomatoes, and tangy pickles, all served on a soft, toasted bun.</p>
+                </div>
+                
+                <div class="product-options">
+                    <div class="option-group">
+                        <div class="option-title">Spiciness</div>
+                        <div class="option-buttons">
+                            <div class="option-btn" data-option="spicy">Spicy</div>
+                            <div class="option-btn active" data-option="mild">Mild</div>
+                            <div class="option-btn" data-option="hot">Hot</div>
+                        </div>
+                    </div>
+                    
+                    <div class="option-group">
+                        <div class="option-title">Portion</div>
+                        <div class="portion-control">
+                            <div class="portion-btn" id="decreasePortion2">-</div>
+                            <div class="portion-value" id="portionValue2">1</div>
+                            <div class="portion-btn" id="increasePortion2">+</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product-footer">
+                    <div class="total-price" id="product2Price">$9.99</div>
+                    <button class="btn add-to-cart-btn" data-product-id="2" data-product-name="Hamburger Veggie Burger" data-base-price="9.99">ADD TO CART</button>
+                </div>
+            </div>
+
+            <!-- Product 3: Chicken Burger -->
+            <div id="product3Screen" class="container product-detail hidden">
+                <div class="product-header">
+                    <div class="back-button" data-back="home">
+                        <i class="fas fa-arrow-left"></i> Back to Menu
+                    </div>
+                    
+                    <div class="product-image">
+                        <img src="images/chicken_burger.jpg" alt="Chicken Burger">
+                    </div>
+                    
+                    <h1 class="product-title">Hamburger Chicken Burger</h1>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span>4.6 – 42 mins</span>
+                    </div>
+                    <p class="product-description">Our chicken burger is a delicious and healthier alternative to traditional beef burgers, perfect for those looking for a lighter meal option. Try it today and experience the mouth-watering flavors of our Hamburger Chicken Burger!</p>
+                </div>
+                
+                <div class="product-options">
+                    <div class="option-group">
+                        <div class="option-title">Spiciness</div>
+                        <div class="option-buttons">
+                            <div class="option-btn" data-option="spicy">Spicy</div>
+                            <div class="option-btn active" data-option="mild">Mild</div>
+                            <div class="option-btn" data-option="hot">Hot</div>
+                        </div>
+                    </div>
+                    
+                    <div class="option-group">
+                        <div class="option-title">Portion</div>
+                        <div class="portion-control">
+                            <div class="portion-btn" id="decreasePortion3">-</div>
+                            <div class="portion-value" id="portionValue3">2</div>
+                            <div class="portion-btn" id="increasePortion3">+</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product-footer">
+                    <div class="total-price" id="product3Price">$12.48</div>
+                    <button class="btn add-to-cart-btn" data-product-id="3" data-product-name="Hamburger Chicken Burger" data-base-price="12.48">ADD TO CART</button>
+                </div>
+            </div>
+
+            <!-- Product 4: Fried Chicken Burger -->
+            <div id="product4Screen" class="container product-detail hidden">
+                <div class="product-header">
+                    <div class="back-button" data-back="home">
+                        <i class="fas fa-arrow-left"></i> Back to Menu
+                    </div>
+                    
+                    <div class="product-image">
+                        <img src="images/fried_chicken_burger.jpg" alt="Fried Chicken Burger">
+                    </div>
+                    
+                    <h1 class="product-title">Fried Chicken Burger</h1>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span>4.5 – 14 mins</span>
+                    </div>
+                    <p class="product-description">Indulge in our crispy and savory Fried Chicken Burger, made with a juicy chicken patty hand-breaded and deep-fried to perfection served on a warm bun with lettuce, tomato, and a creamy sauce.</p>
+                </div>
+                
+                <div class="product-options">
+                    <div class="option-group">
+                        <div class="option-title">Spiciness</div>
+                        <div class="option-buttons">
+                            <div class="option-btn" data-option="spicy">Spicy</div>
+                            <div class="option-btn active" data-option="mild">Mild</div>
+                            <div class="option-btn" data-option="hot">Hot</div>
+                        </div>
+                    </div>
+                    
+                    <div class="option-group">
+                        <div class="option-title">Portion</div>
+                        <div class="portion-control">
+                            <div class="portion-btn" id="decreasePortion4">-</div>
+                            <div class="portion-value" id="portionValue4">4</div>
+                            <div class="portion-btn" id="increasePortion4">+</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product-footer">
+                    <div class="total-price" id="product4Price">$26.99</div>
+                    <button class="btn add-to-cart-btn" data-product-id="4" data-product-name="Fried Chicken Burger" data-base-price="26.99">ADD TO CART</button>
+                </div>
+            </div>
+
+            <!-- Product 5: Custom Burger -->
+            <div id="product5Screen" class="container product-detail hidden">
+                <div class="product-header">
+                    <div class="back-button" data-back="home">
+                        <i class="fas fa-arrow-left"></i> Back to Menu
+                    </div>
+                    
+                    <div class="product-image">
+                        <img src="images/custom_burger.jpg" alt="Custom Burger">
+                    </div>
+                    
+                    <h1 class="product-title">Customize Your Burger to Your Tastes</h1>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>Ultimate Experience</span>
+                    </div>
+                    <p class="product-description">Create your ultimate burger experience with our fully customizable burger builder. Choose your spiciness level, portion size, toppings, and sides to make the perfect burger just for you.</p>
+                </div>
+                
+                <div class="product-options">
+                    <div class="option-group">
+                        <div class="option-title">Spiciness</div>
+                        <div class="option-buttons">
+                            <div class="option-btn" data-option="spicy">Spicy</div>
+                            <div class="option-btn active" data-option="mild">Mild</div>
+                            <div class="option-btn" data-option="hot">Hot</div>
+                        </div>
+                    </div>
+                    
+                    <div class="option-group">
+                        <div class="option-title">Portion</div>
+                        <div class="portion-control">
+                            <div class="portion-btn" id="decreasePortion5">-</div>
+                            <div class="portion-value" id="portionValue5">2</div>
+                            <div class="portion-btn" id="increasePortion5">+</div>
+                        </div>
+                    </div>
+                    
+                    <div class="option-group">
+                        <div class="option-title">Toppings ($0.50 each)</div>
+                        <div class="toppings-grid">
+                            <div class="topping-item" data-topping="tomato">Tomato</div>
+                            <div class="topping-item" data-topping="onions">Onions</div>
+                            <div class="topping-item" data-topping="pickles">Pickles</div>
+                            <div class="topping-item" data-topping="bacons">Bacons</div>
+                        </div>
+                    </div>
+                    
+                    <div class="option-group">
+                        <div class="option-title">Side options ($1.50 each)</div>
+                        <div class="sides-grid">
+                            <div class="side-item" data-side="fries">Fries</div>
+                            <div class="side-item" data-side="coleslaw">Coleslaw</div>
+                            <div class="side-item" data-side="salad">Salad</div>
+                            <div class="side-item" data-side="onion">Onion Rings</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product-footer">
+                    <div class="total-price" id="product5Price">$16.49</div>
+                    <button class="btn add-to-cart-btn" data-product-id="5" data-product-name="Custom Burger" data-base-price="16.49">ADD TO CART</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cart Modal -->
+        <div id="cartModal" class="cart-modal hidden">
+            <div class="cart-modal-content">
+                <div class="cart-modal-header">
+                    <h2>Your Cart</h2>
+                    <span class="close-cart">&times;</span>
+                </div>
+                <div class="cart-modal-body">
+                    <div id="cartItemsContainer">
+                        <!-- Cart items will be displayed here -->
+                        <div class="empty-cart-message">
+                            <i class="fas fa-shopping-cart"></i>
+                            <p>Your cart is empty</p>
+                        </div>
+                    </div>
+                    <div class="cart-summary hidden" id="cartSummary">
+                        <div class="cart-summary-item">
+                            <span>Subtotal:</span>
+                            <span id="cartSubtotal">$0.00</span>
+                        </div>
+                        <div class="cart-summary-item">
+                            <span>Tax:</span>
+                            <span id="cartTax">$0.00</span>
+                        </div>
+                        <div class="cart-summary-item">
+                            <span>Delivery Fee:</span>
+                            <span id="cartDelivery">$0.00</span>
+                        </div>
+                        <div class="cart-summary-total">
+                            <span>Total:</span>
+                            <span id="cartTotal">$0.00</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="cart-modal-footer">
+                    <button class="btn btn-secondary" id="continueShopping">Continue Shopping</button>
+                    <button class="btn" id="checkoutBtn">Checkout</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Payment Screen -->
+        <div id="paymentScreen" class="hidden">
+            <div class="payment-container">
+                <div class="payment-header">
+                    <h2>Payment</h2>
+                </div>
+                
+                <div class="payment-content">
+                    <h3>Order summary</h3>
+                    <div class="order-summary">
+                        <div class="order-item">
+                            <span>Order:</span>
+                            <span id="orderSubtotal">$0.00</span>
+                        </div>
+                        <div class="order-item">
+                            <span>Taxes:</span>
+                            <span id="orderTax">$0.30</span>
+                        </div>
+                        <div class="order-item">
+                            <span>Delivery fees:</span>
+                            <span id="orderDelivery">$1.50</span>
+                        </div>
+                        <div class="order-total">
+                            <span>Total:</span>
+                            <span id="orderTotal">$0.00</span>
+                        </div>
+                        <div class="delivery-time">
+                            Estimated delivery time: 15 - 30mins
+                        </div>
+                    </div>
+                    
+                    <h3>Payment methods</h3>
+                    <div class="payment-methods">
+                        <div class="payment-method active">
+                            <div><strong>Credit card</strong></div>
+                            <div class="card-details">5105 **** **** 0505</div>
+                        </div>
+                        <div class="payment-method">
+                            <div><strong>Debit card</strong></div>
+                            <div class="card-details">3566 **** **** 0505</div>
+                        </div>
+                        
+                        <div class="save-card">
+                            <input type="checkbox" id="saveCard" checked>
+                            <label for="saveCard">Save card details for future payments</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="payment-footer">
+                    <div class="total-price" id="paymentTotal">$0.00</div>
+                    <button class="btn" id="payNowBtn">Pay Now</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Success Popup -->
+        <div id="successPopup" class="success-popup hidden">
+            <div class="success-content">
+                <div class="success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h3>Success!</h3>
+                <p>Your payment was successful. A receipt for this purchase has been sent to your email.</p>
+                <button class="btn" id="goBackBtn">Go Back to Home</button>
+            </div>
+        </div>
+
+        <!-- Profile Screen -->
+        <div id="profileScreen" class="hidden">
+            <div class="profile-container">
+                <div class="profile-header">
+                    <div class="profile-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h2 id="profileUserName">User Name</h2>
+                </div>
+                
+                <div class="profile-content">
+                    <div class="profile-field">
+                        <div class="profile-label">Name</div>
+                        <div class="profile-value" id="profileName">User Name</div>
+                    </div>
+                    
+                    <div class="profile-field">
+                        <div class="profile-label">Email</div>
+                        <div class="profile-value" id="profileEmail">user@example.com</div>
+                    </div>
+                    
+                    <div class="profile-field">
+                        <div class="profile-label">Delivery address</div>
+                        <div class="profile-value" id="profileAddress">123 Street, City</div>
+                    </div>
+                    
+                    <div class="profile-field">
+                        <div class="profile-label">Password</div>
+                        <div class="profile-value">●●●●●●●●●●</div>
+                    </div>
+                    
+                    <div class="profile-field">
+                        <div class="profile-label">Payment Details</div>
+                        <div class="profile-value">MasterCard ending in 0505</div>
+                    </div>
+                    
+                    <div class="profile-field">
+                        <div class="profile-label">Order history</div>
+                        <div class="profile-value">0 orders completed</div>
+                    </div>
+                    
+                    <div class="profile-actions">
+                        <button class="btn" id="editProfileBtn">Edit Profile</button>
+                        <button class="btn btn-secondary" id="logoutBtn">Log out</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
