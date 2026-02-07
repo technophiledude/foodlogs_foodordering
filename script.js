@@ -51,6 +51,26 @@ const foodItems = [
     }
 ];
 
+// Add this function after your other function declarations
+async function submitOrderToAPI(orderData) {
+    try {
+        const response = await fetch('http://localhost:3000/api/orders', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(orderData)
+        });
+        
+        const result = await response.json();
+        console.log('Order submitted to API:', result);
+        return result;
+    } catch (error) {
+        console.error('Error submitting order:', error);
+        return { success: false, message: 'Failed to submit order' };
+    }
+}
+
 // DOM Elements
 const splashScreen = document.getElementById('splashScreen');
 const appContainer = document.getElementById('appContainer');
@@ -610,4 +630,5 @@ window.updateCartItemQuantity = updateCartItemQuantity;
 window.removeFromCart = removeFromCart;
 
 // Initialize the app when page loads
+
 document.addEventListener('DOMContentLoaded', initApp);
