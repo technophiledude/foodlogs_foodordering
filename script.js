@@ -164,15 +164,30 @@ function setupEventListeners() {
         });
     });
     
-    // Payment button
-    document.getElementById('payNowBtn')?.addEventListener('click', () => {
+    // Payment button - NEW VERSION WITH API
+document.getElementById('payNowBtn')?.addEventListener('click', async () => {
+    // Prepare order data
+    const orderData = {
+        user: currentUser,
+        items: cart,
+        total: calculateOrderTotal(),
+        timestamp: new Date().toISOString()
+    };
+    
+    // Submit to API
+    const result = await submitOrderToAPI(orderData);
+    
+    if (result.success) {
         showScreen('successPopup');
         // Clear cart after successful payment
         cart = [];
         saveCart();
         updateCartCount();
         renderCartItems();
-    });
+    } else {
+        alert('Failed to submit order. Please try again.');
+    }
+});
     
     // Success popup button
     document.getElementById('goBackBtn')?.addEventListener('click', () => {
@@ -632,3 +647,4 @@ window.removeFromCart = removeFromCart;
 // Initialize the app when page loads
 
 document.addEventListener('DOMContentLoaded', initApp);
+
